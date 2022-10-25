@@ -15,7 +15,7 @@
 }
 .nav-list-item {
   list-style: none;
-  padding: 8px 0;
+  padding: 10px 0;
 }
 .nav-list-item a {
   color: #40b983;

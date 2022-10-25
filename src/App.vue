@@ -1,20 +1,18 @@
 <template>
   <v-app>
+    <v-navigation-drawer>
+  <side-bar></side-bar>
+</v-navigation-drawer>
+<v-spacer>
     <v-container>
-    <!-- スタイルは本記事のメインではないので雑に設定しています。この辺りもお好みで！ -->
-        <v-spacer></v-spacer>
-
         <div id="nav">
           <router-link to="/">Home</router-link> |
           <router-link to="/about">About</router-link>
         </div>
       <router-view/>
-    </v-container>
-<v-navigation-drawer>
-  <side-bar></side-bar>
-</v-navigation-drawer>
-
-  </v-app>
+  </v-container>
+</v-spacer>
+</v-app>
   
 </template>
 
