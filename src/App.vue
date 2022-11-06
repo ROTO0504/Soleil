@@ -1,25 +1,33 @@
 <template>
   <v-app>
-    <v-navigation-drawer>
-  <side-bar></side-bar>
-</v-navigation-drawer>
-<v-spacer>
-    <v-container>
-        <div id="nav">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link>
-        </div>
-      <router-view/>
-  </v-container>
-</v-spacer>
-</v-app>
-  
+    <v-spacer>
+      <v-navigation-drawer v-model="drawer" absolute temporary>
+        <side-bar></side-bar>
+      </v-navigation-drawer>
+      <v-app-bar>
+        <v-app-bar-nav-icon
+          v-on:click.stop="drawer = !drawer"
+        ></v-app-bar-nav-icon>
+      </v-app-bar>
+      <div style="padding-top: 70px"></div>
+      <router-view />
+    </v-spacer>
+  </v-app>
 </template>
 
 <script>
 import SideBar from "./components/SideBar";
 export default {
-  components: { SideBar }
+  components: { SideBar },
+  data: () => ({
+    drawer: false,
+    group: null,
+  }),
+  watch: {
+    group() {
+      this.drawer = false;
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -42,5 +50,9 @@ export default {
   .router-link-exact-active {
     color: #42b983;
   }
+}
+
+#200 {
+  padding: 200px;
 }
 </style>
