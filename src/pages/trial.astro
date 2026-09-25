@@ -1,0 +1,34 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LineAddFriend from "@/components/LineAddFriend.astro";
+---
+<BaseLayout title="体験レッスンのご案内" description="体験レッスンにお越しいただく前に、ご家庭でご確認いただきたいことをご案内します。">
+  <article class="trial-page wrap">
+    <header class="trial-hero">
+      <p class="eyebrow">TRIAL LESSON GUIDE</p>
+      <h1>体験レッスンに<br />お越しいただく前に</h1>
+      <p>お子さまに安心してレッスンの雰囲気を感じていただくため、<br class="pc-only" />お申し込み前に、以下の2点をご家庭でご確認ください。</p>
+    </header>
+
+    <ol class="trial-points">
+      <li><h2>お名前を聞かれたときに、<br class="mobile-only" />お返事ができること</h2><p>先生がお名前をお聞きした際に、保護者の方がお答えになるのではなく、お子さまご本人が自分でお返事できるかをご確認ください。</p></li>
+      <li><h2>保護者の方から離れて、<br class="mobile-only" />落ち着いて過ごせること</h2><p>体験レッスンの時間中、保護者の方から少し離れ、お一人で静かに立ったり、椅子に座ったりしていられるかをご確認ください。</p></li>
+    </ol>
+
+    <section class="trial-reason">
+      <h2>この2つを大切にしている理由</h2>
+      <p>初めての場所や先生との出会いは、お子さまにとって少し緊張するものです。自分でお返事をし、保護者の方から少し離れて過ごすことができると、先生とのやり取りに自然に集中でき、レッスンそのものを落ち着いて体験しやすくなります。</p>
+    </section>
+
+    <p class="trial-message">もし今はまだ難しそうでも、どうぞご心配なさらないでください。<br class="pc-only" />ご家庭で少しずつ練習し、経験を重ねていくことで、<br class="pc-only" />自然とできるようになっていきます。</p>
+
+    <section class="trial-cta" aria-labelledby="trial-cta-title">
+      <h2 id="trial-cta-title">2つのことが無理なく<br class="mobile-only" />できるようになりましたら</h2>
+      <p>ぜひ、体験レッスンのお申し込みをご連絡ください。<br />お申し込み・お問い合わせは、LINEで承っております。</p>
+      <LineAddFriend />
+    </section>
+
+    <p class="trial-closing">お子さまにとって良いタイミングで<br class="mobile-only" />お会いできることを、<br />心より楽しみにしております。</p>
+    <p class="trial-back"><a href="/">← トップページへ戻る</a></p>
+  </article>
+</BaseLayout>

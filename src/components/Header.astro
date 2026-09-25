@@ -1,42 +1,45 @@
 ---
-import { css } from "styled-system/css";
-import { SITE } from "@/config/site";
+import { SITE, NAV_ITEMS } from "@/config/site";
 ---
-
-<header
-  class={css({
-    position: "fixed",
-    insetX: "0",
-    top: "0",
-    zIndex: "10",
-    h: "header",
-    display: "flex",
-    alignItems: "center",
-    gap: "3",
-    px: "4",
-    bg: "bg",
-    borderBottom: "1px solid",
-    borderColor: "border",
-  })}
->
-  <button
-    type="button"
-    data-drawer-toggle
-    aria-label="メニューを開く"
-    aria-controls="drawer"
-    class={css({
-      display: "grid",
-      placeItems: "center",
-      w: "10",
-      h: "10",
-      rounded: "full",
-      cursor: "pointer",
-      _hover: { bg: "gray.100" },
-    })}
-  >
-    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path>
-    </svg>
-  </button>
-  <a href="/" class={css({ fontWeight: "bold", fontSize: "lg" })}>{SITE.name}</a>
+<header class="header">
+  <a class="brand" href="/" aria-label={`${SITE.name} ホーム`}><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i></span><span>{SITE.name}<small>VIOLIN · PIANO · SOLFÈGE</small></span></a>
+  <nav class="desktop-nav" aria-label="メインナビゲーション">
+    {NAV_ITEMS.map(item => <a href={item.href}>{item.label}</a>)}
+  </nav>
+  <a class="header-contact" href="/trial">体験レッスン・お問い合わせ <span aria-hidden="true">↗</span></a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="メニューを開く"><span></span><span></span><small>MENU</small></button>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="モバイルナビゲーション" hidden>
+    {NAV_ITEMS.map(item => <a href={item.href}>{item.label}<span aria-hidden="true">↗</span></a>)}
+    <a href="/trial">体験レッスン・お問い合わせ<span aria-hidden="true">↗</span></a>
+  </nav>
 </header>
+<script>
+  import { gsap } from 'gsap';
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.querySelector<HTMLElement>('#mobile-nav');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  function closeMenu() {
+    if (!nav || !toggle) return;
+    gsap.killTweensOf([nav, ...nav.querySelectorAll('a')]);
+    gsap.set([nav, ...nav.querySelectorAll('a')], { clearProps: 'opacity,transform' });
+    nav.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'メニューを開く');
+  }
+  toggle?.addEventListener('click', () => {
+    if (!nav) return;
+    if (!nav.hidden) { closeMenu(); return; }
+    nav.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'メニューを閉じる');
+    if (!reduced.matches) {
+      gsap.fromTo(nav, {opacity:0,y:-12}, {opacity:1,y:0,duration:.25,clearProps:'all'});
+      gsap.fromTo(nav.querySelectorAll('a'), {opacity:0,y:12}, {opacity:1,y:0,duration:.3,stagger:.045,clearProps:'all'});
+    }
+  });
+  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && nav && !nav.hidden) { closeMenu(); toggle?.focus(); } });
+  document.addEventListener('click', event => { if (event.target instanceof Node && !document.querySelector('.header')?.contains(event.target)) closeMenu(); });
+  document.addEventListener('focusin', event => { if (event.target instanceof Node && !document.querySelector('.header')?.contains(event.target)) closeMenu(); });
+  matchMedia('(min-width: 1000px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+</script>

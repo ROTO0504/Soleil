@@ -1,43 +1,38 @@
-# Soleil
+# ソレイユ音楽教室 Webサイト
 
-Astro + Panda CSS + TypeScript + Bun で構築したサイト。
+A mobile-first music school website built with Astro and GSAP. The original ivory and brown palette is retained with a restrained text-only hero, rounded lesson cards, and a mobile quick navigation dock. No external images or web fonts are required.
 
-## セットアップ
+## 開発
 
 ```sh
-bun install        # postinstall 相当の prepare で `panda codegen` が走る
-bun run dev        # http://localhost:4321
-bun run build      # 型チェック (astro check) → dist/ へ静的ビルド
-bun run preview    # ビルド結果の確認
+bun install
+npm run dev
 ```
 
-## ディレクトリ構成
+## 検証・ビルド
 
-```
-.
-├── astro.config.ts        # Astro 設定
-├── panda.config.ts        # Panda CSS 設定（トークン / グローバル CSS）
-├── postcss.config.cjs     # Panda を PostCSS 経由で Astro(Vite) に組み込む
-├── tsconfig.json          # strict + `@/*` エイリアス
-├── public/                # そのまま配信される静的ファイル
-├── styled-system/         # Panda の生成物（git 管理外）
-└── src/
-    ├── config/site.ts     # サイト名・ナビゲーション項目など
-    ├── styles/global.css  # Panda の @layer 宣言
-    ├── layouts/
-    │   └── BaseLayout.astro   # <head> / Header / Drawer / <main>
-    ├── components/
-    │   ├── Header.astro   # 固定ヘッダー + メニューボタン
-    │   ├── Drawer.astro   # <dialog> ベースのサイドメニュー
-    │   └── NavList.astro  # ナビ（現在ページに aria-current）
-    └── pages/             # ファイルベースルーティング
-        ├── index.astro
-        ├── about.astro
-        └── 404.astro
+```sh
+npm run build
+npm run preview
 ```
 
-## 方針
+`npm run build` はAstroの型チェックと静的サイトの生成を実行します。出力先は `dist/` です。
 
-- ページ追加は `src/pages/` にファイルを置き、必要なら `src/config/site.ts` の `NAV_ITEMS` に追加する。
-- スタイルは `styled-system/css` の `css()` を使う。色などは `panda.config.ts` のトークン（`accent`, `fg`, `brand.500` …）経由で指定する。
-- クライアント JS は必要な箇所だけ `<script>` で書く（現状はドロワー開閉のみ）。
+## 掲載情報の更新
+
+- `src/config/site.ts`: 教室名、説明、メール、電話番号、予約URL、所在地
+- `src/pages/index.astro`: レッスン、料金、FAQなどの掲載内容
+- `src/styles/global.css`: 配色、レイアウト、レスポンシブ対応
+
+教室名は `src/config/site.ts` の `name` で設定しています。体験レッスンのお申し込み・お問い合わせはLINEで受け付けます。`lineUrl` にLINE公式アカウントの友だち追加URLを設定すると、体験レッスンのご案内ページ（`/trial`）に友だち追加ボタンが表示されます。未設定の場合は「準備中」の案内を表示します。
+
+子どものコースの月謝と年間回数はパンフレット記載値です。大人の料金・体験レッスンの料金・所在地など、資料にない情報は追加していません。
+
+## Motion and responsive design
+
+- `src/scripts/motion.ts`: GSAP intro timeline and ScrollTrigger section reveals.
+- `src/components/Header.astro`: animated mobile menu.
+- Mobile base styles expand at 600px and 1000px.
+- `prefers-reduced-motion` disables decorative animations. Content stays readable without JavaScript.
+- Native scrolling is preserved; no pinned sections or scroll interception.
+- Reference: https://gsap.com/docs/v3/GSAP/gsap.matchMedia()/

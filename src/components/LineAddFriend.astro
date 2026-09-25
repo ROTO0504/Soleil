@@ -1,0 +1,8 @@
+---
+import { SITE } from '@/config/site';
+// LINE公式の「友だち追加」ボタン画像（LINE Official Account Manager の配布コードと同じもの）
+const src = 'https://scdn.line-apps.com/n/line_add_friends/btn/ja.png';
+---
+{SITE.lineUrl
+  ? <a class="line-add-friend" href={SITE.lineUrl} target="_blank" rel="noopener"><img src={src} alt="LINEで友だち追加" height="36" /></a>
+  : <div class="line-add-friend is-pending"><img src={src} alt="" height="36" /><p>LINE公式アカウントは、ただいま準備中です。</p></div>}

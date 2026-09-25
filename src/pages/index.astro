@@ -1,10 +1,50 @@
 ---
-import { css } from "styled-system/css";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/config/site";
+const foundations = [
+  { en: 'READ', title: '楽譜を読む', text: '音符や記号を読み取り、自分の力で音楽を進められるように。', symbol: '♮' },
+  { en: 'SING', title: '歌う', text: '歌うことを通して、音の高さや旋律を身体で感じます。', symbol: '♪' },
+  { en: 'RHYTHM', title: 'リズムを感じる', text: '拍やリズムを感じ、自然な流れのある演奏につなげます。', symbol: '♩' },
+  { en: 'LISTEN', title: '音を聴く', text: '音程や響きの違いに気づき、自分の音を整える耳を育てます。', symbol: '♬' },
+];
+const faqs = [
+  ['なぜ60分レッスンなのですか？', '楽器の準備・調弦・ソルフェージュ・演奏・ご家庭での練習方法のご説明までを一つのレッスンと考えています。\n一つひとつを落ち着いて行うため、60分を基本としています。\n幼いお子さまには必要に応じて休憩を入れ、その時間に保護者の方からご家庭での様子を伺ったり、練習方法を一緒に確認したりしています。'],
+  ['楽器を習うのが初めてでも大丈夫ですか？', '初めは思うような音が出なくても大丈夫です。バイオリンは楽器の持ち方や弓の使い方から、一人ひとりのペースに合わせて丁寧に指導します。子どものクラスではソルフェージュも取り入れ、音楽の土台から育てていきます。'],
+  ['ソルフェージュはレッスンに含まれますか？', 'こどもバイオリン・こどもピアノのコースには、ソルフェージュが含まれています。始めたばかりの頃は、ソルフェージュと楽器を同時に学びながら、成長に合わせて演奏時間を増やしていきます。副科ピアノ・大人コースには含まれません。'],
+  ['大人も通うことはできますか？', '大人の方を対象とした「大人のためのバイオリンサロン」でも生徒を募集しています。レッスンは月2回（予約制）・1回90分で、月謝は12,000円です。'],
+];
 ---
-
 <BaseLayout>
-  <section class={css({ py: "16", textAlign: "center" })}>
-    <h1 class={css({ fontSize: "4xl", fontWeight: "bold" })}>HOME</h1>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-copy">
+      <p class="eyebrow hero-enter">VIOLIN · PIANO · SOLFÈGE</p>
+      <h1 id="hero-heading"><span class="hero-line">音楽を</span><span class="hero-line">一生の楽しみに。</span></h1>
+      <p class="hero-description hero-enter">楽譜を読み、聴き、感じる。<br />自分の力で音楽を楽しめるようになる。<br />そのための土台を、一人ひとりのペースで。</p>
+      <p class="hero-caption hero-enter">こどもバイオリン・こどもピアノ<br />大人のためのバイオリンサロン</p>
+      <a class="hero-link hero-enter" href="#lessons">レッスンのご案内</a>
+    </div>
+    <div class="hero-bottom"><span>MUSIC FOR A LIFETIME</span><a href="#about">教室について</a></div>
   </section>
+  <div class="announcement"><span class="status-dot"></span><p>こどもも、大人も。新しい仲間を募集中。</p><a href="#contact" aria-label="生徒募集・体験レッスンの案内へ">↗</a></div>
+  <section id="about" class="section wrap about">
+    <div class="section-heading"><h2>楽譜を見て、自分で考え、<br />音楽を楽しめる力を育てる</h2></div>
+    <div class="about-body"><p>{SITE.name}では、バイオリンを中心に、ピアノ・ソルフェージュを学ぶことができます。</p><p>技術を身につけることだけをゴールにせず、聴く・感じる・考える力まで。一生の財産になる音楽の土台を、一人ひとりのペースに寄り添いながら育てます。</p><div class="values">{['読む','聴く','表現する'].map((value,i) => <div><span>0{i+1}</span><h3>{value}</h3></div>)}</div></div>
+  </section>
+  <section id="lessons" class="section lessons">
+    <div class="wrap"><div class="section-top"><div><h2>コース内容</h2></div></div>
+      <div class="lesson-grid">
+        <article class="lesson-card"><div class="lesson-head"><svg class="lesson-icon" viewBox="0 0 64 64" aria-hidden="true"><g transform="translate(30 36) rotate(28)" fill="currentColor"><path transform="scale(.26)" d="M0 -60C22 -61 39 -52 38 -34C37 -22 33 -16 37 -12C28 -8 24 0 25 6C26 14 30 20 39 24C47 32 48 56 40 64C31 73 15 75 0 75C-15 75 -31 73 -40 64C-48 56 -47 32 -39 24C-30 20 -26 14 -25 6C-24 0 -28 -8 -37 -12C-33 -16 -37 -22 -38 -34C-39 -52 -22 -61 0 -60Z"/><rect x="-1.6" y="-31" width="3.2" height="18" rx="1"/><circle cx="0" cy="-33.5" r="3.2"/><path d="M-1.6 -29H-4.5M1.6 -27H4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></g><path d="M44 58L60 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="lesson-en">VIOLIN</span></div><div class="lesson-content"><span class="tag">年中〜中学生</span><h3>こどもバイオリン</h3><p>美しい音色で、歌うように。楽器の持ち方から丁寧に、表現する喜びを育みます。</p><a class="text-link" href="#violin-detail">レッスンについて <span aria-hidden="true">↗</span></a></div></article>
+        <article class="lesson-card"><div class="lesson-head"><svg class="lesson-icon" viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor"><path d="M10 29L52 9Q55 8 56 11L57 13L14 31Z"/><path d="M4 31H50C56 31 60 33 60 37V40H4Z"/><rect x="2" y="33" width="10" height="4" rx="1"/><rect x="8" y="40" width="3.2" height="16" rx="1"/><rect x="51" y="40" width="3.2" height="16" rx="1"/><rect x="30.5" y="40" width="2.4" height="10"/><rect x="27" y="49" width="9" height="2.6" rx="1"/></g></svg><span class="lesson-en">PIANO</span></div><div class="lesson-content"><span class="tag">年中〜中学生</span><h3>こどもピアノ</h3><p>鍵盤から広がる、豊かな世界。ソルフェージュとともに、音楽の土台から学びます。</p><a class="text-link" href="#courses">コース・料金を見る <span aria-hidden="true">↗</span></a></div></article>
+        <article class="lesson-card"><div class="lesson-head"><svg class="lesson-icon" viewBox="0 0 64 64" aria-hidden="true"><g fill="currentColor"><path d="M14 6H50L47 32H17Z"/><rect x="15" y="31" width="34" height="3" rx="1.2"/><rect x="30.8" y="34" width="2.4" height="18"/></g><path d="M32 51L21 61M32 51L43 61M32 51V62" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><g stroke="var(--paper)" stroke-width="1" opacity=".9"><path d="M20 13H44M20 17H44M20 21H44M21 25H43"/></g></svg><span class="lesson-en">ADULT SALON</span></div><div class="lesson-content"><span class="tag">大人の方</span><h3>大人のバイオリンサロン</h3><p>「いつか弾いてみたかった」を、音楽のある日常へ。自分のためのひとときを。</p><a class="text-link" href="#contact">レッスンを相談する <span aria-hidden="true">↗</span></a></div></article>
+      </div>
+      <div id="violin-detail" class="lesson-process"><div><p class="eyebrow">STEP BY STEP</p><h3>成長に合わせて、<br />少しずつ。</h3></div><ol><li><span>START</span><div><h4>まずは、音楽の土台から。</h4><p>ソルフェージュと楽器を同時に学びます。音楽の基礎を育てながら、楽器に慣れていきます。</p></div></li><li><span>GROW</span><div><h4>自分の音が、育っていく。</h4><p>成長に合わせて演奏時間を増やし、自分の力で音楽を組み立てられるように。</p></div></li><li><span>PLAY</span><div><h4>音を重ねる、よろこびも。</h4><p>バイオリンではアンサンブルにも挑戦。一人では味わえない楽しさに出会います。</p></div></li></ol></div>
+    </div>
+  </section>
+  <section id="solfege" class="section wrap solfege"><div class="section-top"><div><h2>音楽を楽しむ、<br /><em>4つのちから。</em></h2></div><p>「弾ける」だけではなく、<br />「わかる」「感じる」へ。</p></div><p class="solfege-intro">ソルフェージュは、音楽をのびのびと表現するための学び。<br />子どものクラスでは、楽器を弾く時間と同じように、この4つの力を大切にしています。</p><div class="foundation-grid">{foundations.map(item => <article><span class="foundation-symbol" aria-hidden="true">{item.symbol}</span><p class="eyebrow">{item.en}</p><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></section>
+  <section id="courses" class="section pricing"><div class="wrap"><div class="section-top"><div><h2>レッスンコース・料金</h2></div></div><div class="course-group"><h3 class="course-group-title"><span class="eyebrow">FOR KIDS</span>こどものコース<small>年中〜中学生</small></h3><div class="course-instrument"><p class="instrument-label"><span>VIOLIN</span>バイオリン</p><div class="price-table"><div class="price-row"><h4>こどもバイオリン<span class="duration">60<small>分</small></span></h4><p>バイオリン＋ソルフェージュ</p><p>年間40回</p><p class="price">15,000<span>円 / 月</span></p></div><div class="price-row"><h4>こどもバイオリン<span class="duration is-long">90<small>分</small></span></h4><p>バイオリン＋ソルフェージュ</p><p>年間40回</p><p class="price">18,000<span>円 / 月</span></p></div></div></div><div class="course-instrument"><p class="instrument-label"><span>PIANO</span>ピアノ</p><div class="price-table"><div class="price-row"><h4>こどもピアノ<span class="duration">60<small>分</small></span></h4><p>ピアノ＋ソルフェージュ</p><p>年間40回</p><p class="price">8,000<span>円 / 月</span></p></div></div></div></div><div class="course-group"><h3 class="course-group-title"><span class="eyebrow">FOR ADULTS</span>大人のコース<small>高校生〜</small></h3><div class="course-instrument"><p class="instrument-label"><span>VIOLIN</span>バイオリン</p><div class="price-table"><div class="price-row"><h4>大人のバイオリンサロン<span class="duration is-long">90<small>分</small></span></h4><p>バイオリン</p><p>月2回（予約制）</p><p class="price">12,000<span>円 / 月</span></p></div></div></div></div><div class="course-group"><h3 class="course-group-title"><span class="eyebrow">OPTION</span>オプション<small>バイオリン受講生限定</small></h3><p class="option-lead">演奏の世界を広げる、副科ピアノ。音程感・和声感・音を聴く力を育て、バイオリンの演奏にも活きてきます。</p><div class="price-table"><div class="price-row option-row"><h4>副科ピアノ<span class="duration">30<small>分</small></span></h4><p>ピアノ（ソルフェージュは含まれません）</p><p>年間40回</p><p class="price">6,000<span>円 / 月</span></p></div></div></div></div></section>
+  {SITE.address && <section id="access" class="wrap access" aria-labelledby="access-title"><div class="access-card"><div class="access-main"><span class="access-pin" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2.5C8.1 2.5 5 5.6 5 9.4C5 14.6 12 21.5 12 21.5S19 14.6 19 9.4C19 5.6 15.9 2.5 12 2.5Z" fill="currentColor"/><circle cx="12" cy="9.4" r="2.6" fill="var(--paper)"/></svg></span><div><h2 id="access-title">教室の場所</h2><p class="access-area">{SITE.address}</p></div></div><ul class="access-info"><li><span class="access-icon" aria-hidden="true">P</span><p><strong>駐車場完備</strong></p></li><li><span class="access-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 11L12 4L20.5 11V20H14.5V14.5H9.5V20H3.5Z" fill="currentColor"/></svg></span><p><strong>自宅教室</strong><small>詳細な住所は、体験レッスンのお申し込み時にお伝えします。</small></p></li></ul></div></section>}
+  <section id="faq" class="section wrap faq"><div><h2>よくあるご質問</h2></div><div class="faq-list">{faqs.map(([q,a]) => <details><summary><span class="q-mark">Q.</span><span>{q}</span><span class="faq-plus" aria-hidden="true"></span></summary><p>{a.split('\n').map((line, i) => <>{i > 0 && <br />}{line}</>)}</p></details>)}</div></section>
+  <section id="contact" class="contact"><div class="contact-rings" aria-hidden="true"></div><div class="wrap contact-inner"><h2>体験レッスン・お問い合わせ</h2><p>はじめての方も、もう一度はじめたい方も。<br />教室についてのご質問やレッスンのご相談など、<br class="mobile-only" />どうぞお気軽に。</p><div class="contact-action"><a class="button light" href="/trial">体験レッスンを申し込む <span aria-hidden="true">↗</span></a></div></div></section>
+  <nav class="mobile-dock" aria-label="クイックナビゲーション"><a href="#lessons">レッスン</a><a href="#courses">料金</a><a href="/trial">体験レッスン <span aria-hidden="true">↗</span></a></nav>
+  <script src="../scripts/motion.ts"></script>
 </BaseLayout>
