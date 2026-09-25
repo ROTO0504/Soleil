@@ -13,8 +13,33 @@ const faqs = [
   ['ソルフェージュはレッスンに含まれますか？', 'こどもバイオリン・こどもピアノのコースには、ソルフェージュが含まれています。始めたばかりの頃は、ソルフェージュと楽器を同時に学びながら、成長に合わせて演奏時間を増やしていきます。副科ピアノ・大人コースには含まれません。'],
   ['大人も通うことはできますか？', '大人の方を対象とした「大人のためのバイオリンサロン」でも生徒を募集しています。レッスンは月2回（予約制）・1回90分で、月謝は12,000円です。'],
 ];
+const siteUrl = new URL("/", Astro.site).href;
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicSchool",
+    name: SITE.name,
+    description: SITE.description,
+    url: siteUrl,
+    image: new URL(SITE.ogImage, Astro.site).href,
+    logo: new URL("/favicon.svg", Astro.site).href,
+    ...(SITE.phone ? { telephone: SITE.phone } : {}),
+    ...(SITE.email ? { email: SITE.email } : {}),
+    ...(SITE.address ? { address: { "@type": "PostalAddress", addressRegion: "愛知県", addressLocality: SITE.address, addressCountry: "JP" } } : {}),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a.replace(/\n/g, "") },
+    })),
+  },
+];
 ---
 <BaseLayout>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
   <section class="hero" aria-labelledby="hero-heading">
     <div class="hero-copy">
       <p class="eyebrow hero-enter">VIOLIN · PIANO · SOLFÈGE</p>
@@ -25,7 +50,7 @@ const faqs = [
     </div>
     <div class="hero-bottom"><span>MUSIC FOR A LIFETIME</span><a href="#about">教室について</a></div>
   </section>
-  <div class="announcement"><span class="status-dot"></span><p>こどもも、大人も。新しい仲間を募集中。</p><a href="#contact" aria-label="生徒募集・体験レッスンの案内へ">↗</a></div>
+  <div class="announcement"><span class="status-dot"></span><p>こども・大人ともに、生徒募集中です。</p><a href="#contact" aria-label="生徒募集・体験レッスンの案内へ">↗</a></div>
   <section id="about" class="section wrap about">
     <div class="section-heading"><h2>楽譜を見て、自分で考え、<br />音楽を楽しめる力を育てる</h2></div>
     <div class="about-body"><p>{SITE.name}では、バイオリンを中心に、ピアノ・ソルフェージュを学ぶことができます。</p><p>技術を身につけることだけをゴールにせず、聴く・感じる・考える力まで。一生の財産になる音楽の土台を、一人ひとりのペースに寄り添いながら育てます。</p><div class="values">{['読む','聴く','表現する'].map((value,i) => <div><span>0{i+1}</span><h3>{value}</h3></div>)}</div></div>
