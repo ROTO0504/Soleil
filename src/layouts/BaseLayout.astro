@@ -1,0 +1,33 @@
+---
+import "@/styles/global.css";
+import { css } from "styled-system/css";
+import { SITE } from "@/config/site";
+import Header from "@/components/Header.astro";
+import Drawer from "@/components/Drawer.astro";
+
+type Props = {
+  title?: string;
+  description?: string;
+};
+
+const { title, description = SITE.description } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.name}` : SITE.name;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <Drawer />
+    <main class={css({ pt: "header", px: "4", maxW: "5xl", mx: "auto" })}>
+      <slot />
+    </main>
+  </body>
+</html>

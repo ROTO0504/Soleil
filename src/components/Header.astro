@@ -1,0 +1,42 @@
+---
+import { css } from "styled-system/css";
+import { SITE } from "@/config/site";
+---
+
+<header
+  class={css({
+    position: "fixed",
+    insetX: "0",
+    top: "0",
+    zIndex: "10",
+    h: "header",
+    display: "flex",
+    alignItems: "center",
+    gap: "3",
+    px: "4",
+    bg: "bg",
+    borderBottom: "1px solid",
+    borderColor: "border",
+  })}
+>
+  <button
+    type="button"
+    data-drawer-toggle
+    aria-label="メニューを開く"
+    aria-controls="drawer"
+    class={css({
+      display: "grid",
+      placeItems: "center",
+      w: "10",
+      h: "10",
+      rounded: "full",
+      cursor: "pointer",
+      _hover: { bg: "gray.100" },
+    })}
+  >
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path>
+    </svg>
+  </button>
+  <a href="/" class={css({ fontWeight: "bold", fontSize: "lg" })}>{SITE.name}</a>
+</header>
