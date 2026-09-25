@@ -1,0 +1,51 @@
+---
+import { css } from "styled-system/css";
+import NavList from "./NavList.astro";
+---
+
+<dialog
+  id="drawer"
+  aria-label="メニュー"
+  class={css({
+    m: "0",
+    p: "0",
+    h: "100dvh",
+    maxH: "100dvh",
+    w: "280px",
+    maxW: "80vw",
+    border: "none",
+    bg: "bg",
+    boxShadow: "xl",
+    _backdrop: { bg: "blackAlpha.400" },
+  })}
+>
+  <div class={css({ p: "4" })}>
+    <h2
+      class={css({
+        pb: "4",
+        mb: "4",
+        borderBottom: "1px solid",
+        borderColor: "accent",
+        color: "accent",
+        fontSize: "xl",
+        fontWeight: "bold",
+        textAlign: "center",
+      })}
+    >
+      MENU
+    </h2>
+    <NavList />
+  </div>
+</dialog>
+
+<script>
+  const drawer = document.querySelector<HTMLDialogElement>("#drawer");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-drawer-toggle]");
+
+  toggle?.addEventListener("click", () => drawer?.showModal());
+
+  // 背景（::backdrop）クリックで閉じる
+  drawer?.addEventListener("click", (e) => {
+    if (e.target === drawer) drawer.close();
+  });
+</script>
