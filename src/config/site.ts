@@ -1,5 +1,9 @@
 export const SITE = {
   name: "ソレイユ音楽教室",
+  tagline: "音楽を一生の楽しみに。",
+  locale: "ja_JP",
+  // OGP画像（1200×630）。public/ 配下のパス
+  ogImage: "/og.png",
   description: "音楽を一生の楽しみに。年中から中学生までのバイオリン・ピアノと、大人のためのバイオリンサロン。一人ひとりのペースで音楽を楽しむ力を育てます。",
   lang: "ja",
   email: "",
