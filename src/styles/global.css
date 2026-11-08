@@ -18,8 +18,9 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-body { font-family: var(--sans); margin: 0; background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.95; }
+body { font-family: var(--sans); margin: 0; background: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.95; word-break: keep-all; overflow-wrap: anywhere; }
 h1,h2,h3,h4,p { margin: 0; }
+.nowrap { white-space: nowrap; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 a,button,summary { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
@@ -59,10 +60,6 @@ h3 { font-size: 21px; font-weight: 600; line-height: 1.65; letter-spacing: -.035
 .about-body { margin-top: 32px; }
 .about-body>p { font-size: 13px; color: var(--muted); }
 .about-body>p+p { margin-top: 20px; }
-.values { display: flex; gap: 9px; margin-top: 30px; }
-.values>div { width: calc((100% - 18px)/3); aspect-ratio: 1; border: 1px solid var(--line); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.values span { color: var(--gold); font: italic 16px Georgia,serif; }
-.values h3 { font-size: 16px; margin-top: 5px; }
 .lessons { background: var(--wash); border-radius: 28px 28px 0 0; }
 .section-top { margin-bottom: 30px; }
 .section-top>p { font-size: 12px; margin-top: 17px; color: var(--muted); }
@@ -89,6 +86,7 @@ h3 { font-size: 21px; font-weight: 600; line-height: 1.65; letter-spacing: -.035
 .lesson-process li p { font-size: 12px; color: var(--muted); margin-top: 6px; }
 .solfege-intro { font-size: 13px; color: var(--muted); }
 .solfege-intro br { display: none; }
+.solfege-intro strong { display: block; margin-bottom: 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
 .foundation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 28px; }
 .foundation-grid article { border: 1px solid var(--line); border-radius: 14px; padding: 20px 15px; }
 .foundation-symbol { font: 40px Georgia,serif; line-height: 1; display: block; height: 50px; color: var(--brown); }
@@ -96,11 +94,14 @@ h3 { font-size: 21px; font-weight: 600; line-height: 1.65; letter-spacing: -.035
 .foundation-grid h3 { font-size: 17px; margin: 8px 0; }
 .foundation-grid article>p:last-child { font-size: 11px; color: var(--muted); }
 .pricing { background: var(--wash); }
+.enrollment-fee { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px; margin-top: 10px; font-size: 14px; }
+.enrollment-fee span { padding: 2px 12px; border: 1px solid var(--brown); border-radius: 40px; font-size: 11px; font-weight: 600; color: var(--brown); }
 .price-table { display: grid; gap: 12px; }
 .course-group+.course-group { margin-top: 48px; }
 .course-group-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding-bottom: 14px; margin-bottom: 20px; border-bottom: 2px solid var(--brown); font-size: 22px; }
 .course-group-title .eyebrow { width: 100%; }
 .course-group-title small { font-size: 12px; font-weight: 400; color: var(--muted); }
+.course-group-title .course-terms { padding: 1px 10px; border: 1px solid var(--gold); border-radius: 40px; color: var(--brown); }
 .option-lead { margin-bottom: 16px; font-size: 13px; color: var(--muted); }
 .option-row { border: 1px dashed var(--gold); }
 .course-instrument+.course-instrument { margin-top: 24px; }
@@ -120,6 +121,11 @@ h3 { font-size: 21px; font-weight: 600; line-height: 1.65; letter-spacing: -.035
 .price-row>p.price { font: 34px Georgia,serif; text-align: right; }
 .price span { font-family: var(--sans); font-size: 10px; margin-left: 5px; }
 .price-row>p:nth-child(3) { align-self: end; color: var(--muted); }
+.profile { padding-bottom: 0; }
+.profile-name { margin-top: 18px; font: 600 22px/1.6 var(--display); letter-spacing: .08em; color: var(--brown); }
+.profile-body { margin-top: 24px; }
+.profile-text { font-size: 14px; line-height: 2.1; }
+.profile-text+.profile-text { margin-top: 24px; }
 .access { padding-top: 56px; }
 .access-card { display: grid; gap: 20px; padding: 24px; border-radius: 20px; background: var(--wash); }
 .access-main { display: flex; align-items: center; gap: 14px; }
@@ -224,7 +230,6 @@ details[open] .faq-plus:after { transform: none; }
   .about { display: grid; grid-template-columns: 1fr 1fr; gap: 110px; }
   .about h2 { font-size: clamp(26px, 2.7vw, 34px); }
   .about-body { margin-top: 35px; }
-  .values { max-width: 400px; }
   .section-top { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 42px; }
   .section-top>p { font-size: 13px; }
   .lessons { margin: 0 20px; border-radius: 35px; }
@@ -250,6 +255,11 @@ details[open] .faq-plus:after { transform: none; }
   .price-row>p.price { font-size: 42px; }
   .price-row>p { font-size: 13px; }
       .faq { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; }
+  .profile { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; padding-bottom: 0; }
+  .profile h2 { font-size: 33px; }
+  .profile-name { font-size: 26px; }
+  .profile-body { margin-top: 0; }
+  .profile-text { font-size: 15px; }
   .faq h2 { font-size: 33px; }
   .access-card { grid-template-columns: auto 1fr; align-items: center; gap: 40px; padding: 30px 40px; }
   .access-info { padding: 0 0 0 40px; border-top: 0; border-left: 1px solid var(--line); }
@@ -288,6 +298,15 @@ details[open] .faq-plus:after { transform: none; }
 .trial-cta { display: grid; justify-items: center; gap: 14px; padding: 36px 24px 32px; border-radius: 20px; background: var(--brown); color: var(--paper); text-align: center; }
 .trial-cta h2 { font-size: clamp(18px, 4.6vw, 22px); color: var(--paper); }
 .trial-cta p { font-size: 13px; line-height: 2; }
+.mail-button { gap: 12px; margin-top: 8px; padding: 10px 8px 10px 22px; text-align: left; }
+.mail-button b { display: grid; font-size: clamp(13px, 4vw, 15px); font-weight: 600; letter-spacing: .02em; line-height: 1.5; white-space: nowrap; }
+.mail-button small { font-size: 11px; font-weight: 500; letter-spacing: .04em; color: var(--muted); }
+.mail-button>span { width: 40px; height: 40px; flex-shrink: 0; background: var(--brown); color: var(--paper); }
+.mail-button svg { width: 19px; height: 19px; }
+.trial-fee { display: grid; gap: 2px; width: 100%; max-width: 360px; margin-top: 6px; padding: 18px 20px; border: 1px solid rgba(247, 244, 238, .4); border-radius: 14px; }
+.trial-cta .trial-fee-title { font-size: 12px; font-weight: 600; letter-spacing: .12em; color: var(--line); }
+.trial-cta .trial-fee-main { display: flex; justify-content: center; align-items: baseline; gap: 18px; font: 26px/1.5 Georgia, var(--serif); }
+.trial-cta .trial-fee-note { font-size: 12px; color: var(--line); }
 .trial-cta .line-add-friend { margin-top: 8px; }
 .trial-cta .line-add-friend.is-pending p { color: var(--line); }
 .trial-closing { margin-top: 44px; font-family: var(--serif); font-size: 15px; line-height: 2.1; text-align: center; color: var(--muted); }
@@ -303,4 +322,5 @@ details[open] .faq-plus:after { transform: none; }
   .trial-points li::before { left: 30px; top: 30px; }
   .trial-reason { padding: 32px 36px; }
   .trial-cta { padding: 44px 40px 40px; }
+  .pc-only { display: inline; }
 }

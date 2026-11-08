@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import LineAddFriend from "@/components/LineAddFriend.astro";
+import { SITE } from "@/config/site";
 ---
 <BaseLayout title="体験レッスンのご案内" description="体験レッスンにお越しいただく前に、ご家庭でご確認いただきたいことをご案内します。">
   <article class="trial-page wrap">
@@ -17,15 +17,23 @@ import LineAddFriend from "@/components/LineAddFriend.astro";
 
     <section class="trial-reason">
       <h2>この2つを大切にしている理由</h2>
-      <p>初めての場所や先生との出会いは、お子さまにとって少し緊張するものです。自分でお返事をし、保護者の方から少し離れて過ごすことができると、先生とのやり取りに自然に集中でき、レッスンそのものを落ち着いて体験しやすくなります。</p>
+      <p>初めての場所や先生との出会いは、お子さまにとって少し緊張するものです。自分でお返事をし、保護者の方から少し離れて過ごすことができると、先生とのやり取りに自然に集中でき、レッスンをスムーズに体験しやすくなります。</p>
     </section>
 
-    <p class="trial-message">もし今はまだ難しそうでも、どうぞご心配なさらないでください。<br class="pc-only" />ご家庭で少しずつ練習し、経験を重ねていくことで、<br class="pc-only" />自然とできるようになっていきます。</p>
+    <p class="trial-message">もし今はまだ難しそうでも、どうぞご心配なさらないでください。<br class="pc-only" />ご家庭で少しずつ練習していくことで、<br class="pc-only" />自然とできるようになっていきます。</p>
 
     <section class="trial-cta" aria-labelledby="trial-cta-title">
       <h2 id="trial-cta-title">2つのことが無理なく<br class="mobile-only" />できるようになりましたら</h2>
-      <p>ぜひ、体験レッスンのお申し込みをご連絡ください。<br />お申し込み・お問い合わせは、LINEで承っております。</p>
-      <LineAddFriend />
+      <p>ぜひ、体験レッスンのお申し込みをご連絡ください。<br />お申し込み・お問い合わせは、メールにて承っております。</p>
+      <div class="trial-fee">
+        <p class="trial-fee-title">体験レッスン</p>
+        <p class="trial-fee-main"><span>60分</span><span>1,000円</span></p>
+        <p class="trial-fee-note">楽器のレンタルを含む・1回のみ</p>
+      </div>
+      <a class="button light mail-button" href={`mailto:${SITE.email}?subject=${encodeURIComponent("体験レッスンのお申し込み・お問い合わせ")}`}>
+        <b><small>お申し込み・お問い合わせ</small>{SITE.email}</b>
+        <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2" /><path d="M3.5 7L12 13L20.5 7" stroke-linecap="round" /></svg></span>
+      </a>
     </section>
 
     <p class="trial-closing">お子さまにとって良いタイミングで<br class="mobile-only" />お会いできることを、<br />心より楽しみにしております。</p>

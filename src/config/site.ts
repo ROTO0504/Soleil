@@ -6,7 +6,7 @@ export const SITE = {
   ogImage: "/og.png",
   description: "音楽を一生の楽しみに。年中から中学生までのバイオリン・ピアノと、大人のためのバイオリンサロン。一人ひとりのペースで音楽を楽しむ力を育てます。",
   lang: "ja",
-  email: "",
+  email: "osa.violin@gmail.com",
   phone: "",
   bookingUrl: "",
   // LINE公式アカウントの友だち追加URL（例: https://lin.ee/xxxxxxx）

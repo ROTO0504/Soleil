@@ -10,7 +10,7 @@ media.add('(prefers-reduced-motion: no-preference)', () => {
   intro.from('.hero-line', { y: 10, opacity: 0, duration: 1, stagger: .15, clearProps: 'transform,opacity' })
     .from('.hero-enter', { y: 6, opacity: 0, duration: .8, stagger: .08, clearProps: 'transform,opacity' }, .3);
 
-  gsap.utils.toArray<HTMLElement>('.section-heading, .about-body, .section-top, .lesson-card, .lesson-process, .foundation-grid article, .price-row:not(.table-head), .faq-list, .contact-inner').forEach(element => {
+  gsap.utils.toArray<HTMLElement>('.section-heading, .about-body, .section-top, .lesson-card, .lesson-process, .foundation-grid article, .price-row:not(.table-head), .faq-list, .profile-heading, .profile-body, .contact-inner').forEach(element => {
     // Skip elements above the current position when restoring a deep link.
     if (element.getBoundingClientRect().top < window.innerHeight * .9) return;
     gsap.from(element, {
