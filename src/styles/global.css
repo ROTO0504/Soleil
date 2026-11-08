@@ -1,15 +1,5 @@
 @layer reset, base, tokens, recipes, utilities;
 
-/* 料金の数字用。Georgia は数字の高さが不ぞろい（5・7 が下、6・8 が上にはみ出す）なので、
-   Georgia 互換の Gelasio（OFL）から数字とカンマだけを切り出したもの。高さのそろう数字（lnum）をフォント自体に焼き込んである
-   （CSS の font-variant-numeric は本番ビルドの圧縮で font ショートハンドに打ち消されるため使わない） */
-@font-face {
-  font-family: "Gelasio Digits";
-  src: url("/fonts/gelasio-digits-lnum.woff2") format("woff2");
-  font-display: swap;
-  unicode-range: U+002C, U+0030-0039;
-}
-
 :root {
   --paper: #f7f4ee;
   --ink: #39332e;
@@ -127,8 +117,8 @@ h3 { font-size: 21px; font-weight: 600; line-height: 1.65; letter-spacing: -.035
 .duration.is-long { background: var(--brown); border-color: var(--brown); color: var(--paper); }
 .price-row h4 .duration small { display: inline; margin: 0; font-size: 11px; }
 .price-row>p:nth-child(2) { grid-column: 1 / -1; }
-.price { font: 34px "Gelasio Digits",Georgia,serif; color: var(--brown); white-space: nowrap; }
-.price-row>p.price { font: 34px "Gelasio Digits",Georgia,serif; text-align: right; }
+.price { font: 34px Georgia,serif; color: var(--brown); white-space: nowrap; }
+.price-row>p.price { font: 34px Georgia,serif; text-align: right; }
 .price span { font-family: var(--sans); font-size: 10px; margin-left: 5px; }
 .price-row>p:nth-child(3) { align-self: end; color: var(--muted); }
 .profile { padding-bottom: 0; }
