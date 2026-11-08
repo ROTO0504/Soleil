@@ -30,7 +30,7 @@ npm run preview
 
 ## SEO・OGP
 
-- 本番ドメインが決まったら `astro.config.ts` の `site` を変更してください。canonical、OGP の絶対URL、`sitemap-index.xml`、`robots.txt` にまとめて反映されます（現在は仮の `https://example.com`）。
+- 本番のURLは `astro.config.ts` の `site`（現在は `https://soleil-violin.vercel.app`）。canonical、OGP の絶対URL、`sitemap-index.xml`、`robots.txt` にまとめて反映されます。独自ドメインにしたらここを変更してください。
 - OGP画像は `public/og.png`（1200×630）を全ページ共通で使います。差し替えるときは同じサイズの画像で上書きしてください。
 - ページごとの title / description / OGP画像は `BaseLayout` の props（`title`、`description`、`image`）で指定します。検索に出したくないページには `noindex` を渡します。
 - トップページには構造化データ（`MusicSchool` と、FAQ から生成する `FAQPage`）を出力しています。`src/config/site.ts` の電話・メール・所在地を設定すると構造化データにも反映されます。

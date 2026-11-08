@@ -1,9 +1,9 @@
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 
-// 本番ドメインが決まったら site を変更する（canonical・OGP・sitemap・robots.txt に反映される）
+// 本番のURL（canonical・OGP・sitemap・robots.txt に反映される）。独自ドメインにしたらここを変える
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://soleil-violin.vercel.app",
   integrations: [
     sitemap({
       // 404 とリダイレクト専用ページは除外
